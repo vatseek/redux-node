@@ -27,7 +27,6 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(require('middlewares/loadUser'));
-app.use(require('middlewares/extendRequest'));
 
 app.use('/', router);
 app.use(function(req, res, next) {

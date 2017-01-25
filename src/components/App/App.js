@@ -7,7 +7,7 @@ class App extends Component {
                 <nav className="navbar navbar-default navbar-fixed-top navbar-inverse">
                     <div className="">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="/">Comedian</a>
+                            <a className="navbar-brand" href="/">TTTest</a>
                         </div>
                         <div className="navbar-collapse collapse">
                             <ul className="nav navbar-nav navbar-right">

@@ -1,8 +1,6 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 import ExtError from '../errors';
-import Post from './post';
-import Token from './token';
 
 
 const schema = mongoose.Schema({
@@ -30,7 +28,6 @@ const schema = mongoose.Schema({
         type: String,
         required: true
     },
-    tokens: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Token'}],
     created: {
         type: Date,
         default: Date.now
