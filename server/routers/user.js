@@ -43,7 +43,7 @@ router.post('/login', require('../forms/loginForm'), function (req, res, next) {
     }
     User.authorize(req.form.login, req.form.password).then(user => {
         req.session.user = user;
-        return res.return(user, 'login', '/dashboard');
+        return res.send({ user: user});
     }).catch(err => {
         next(err);
     })
@@ -55,7 +55,7 @@ router.post('/logout', function (req, res) {
         if (err) {
             return next(err);
         }
-        res.redirect('/');
+        res.send({ redirectTo: '/' });
     });
 });
 

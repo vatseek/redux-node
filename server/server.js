@@ -29,27 +29,19 @@ app.use(session({
 app.use(require('middlewares/loadUser'));
 
 app.use('/', router);
-app.use(function(req, res, next) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
 app.use(function(err, req, res, next) {
-    // return next(err);
-    const result = {
-        message: err.message,
-        error: {}
-    };
-    if (app.get('env') === 'development') {
-        result['error'] = err;
+    if (!err) {
+        next();
     }
     res.status(err.status || 500);
     if (res.req.headers['x-request-with'] == 'XMLHttpRequest' || err.responseType === 'json') {
-        delete(result.message);
-        res.json(result);
+        res.send({ error: err.message });
     } else {
-        res.render('error', {...result});
+        res.render('error', { message: err.message });
     }
+});
+app.use(function(req, res) {
+    res.status(404).send('Not Found')
 });
 
 const PORT = process.env.PORT || 3000;
