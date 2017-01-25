@@ -34,6 +34,10 @@ const schema = mongoose.Schema({
     }
 });
 
+schema.methods.toString = function() {
+    return JSON.stringify(this);
+};
+
 schema.methods.encryptPassword = function(password) {
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
 };

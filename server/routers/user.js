@@ -14,21 +14,16 @@ router.post('/register', require('../forms/registerUserForm'), function (req, re
     }
 
     if (!req.form.isValid) {
-        return next(new ValidationError(400, 'Already signed in'), { form: req.form });
+        return next(new ValidationError(400, 'Already signed in'), { form: req.form })
     }
 
     User.getUserByEmailOrLogin(req.form.email, req.form.login).then(user => {
         if (user) {
-            return res.send({
-                form: req.form,
-                errors: {
-                    user: ['User already exists']
-                }
-            }, 'register_user');
+            return res.status(400).send({ form: req.form });
         }
         User.addUser(req.form).then(user => {
             req.session.user = user;
-            return res.return(user, null, '/dashboard');
+            return res.return({user: user });
         }).catch(err => next(err));
     }).catch(err => next(err));
 });

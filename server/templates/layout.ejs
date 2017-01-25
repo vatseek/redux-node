@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<% var assets = 'http://localhost:8050' %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="<%= assets %>/public/assets/server.styles.css" />
+    <link rel="stylesheet" type="text/css" href="<%= assetsDomain %>/public/assets/server.styles.css" />
 </head>
 <body>
-<%= test %>
+<script type="text/javascript">
+    window.REDUX_INITIAL_STATE = { user: null }
+    <% if (user) { %>
+        window.REDUX_INITIAL_STATE.user = user.toString();
+    <% } %>
+</script>
 <%- body -%>
-<script src="<%= assets %>/public/assets/client.bundle.js"></script>
+<script src="<%= assetsDomain %>/public/assets/client.bundle.js"></script>
 </body>
 </html>
