@@ -30,11 +30,9 @@ app.use(require('middlewares/loadUser'));
 
 app.use('/', router);
 app.use(function(err, req, res, next) {
-    if (!err) {
-        next();
-    }
+    if (!err) next();
     res.status(err.status || 500);
-    if (res.req.headers['x-request-with'] == 'XMLHttpRequest' || err.responseType === 'json') {
+    if (req.headers['x-requested-with'] == 'XMLHttpRequest' || err.responseType === 'json') {
         res.send({ error: err.message });
     } else {
         res.render('error', { message: err.message });

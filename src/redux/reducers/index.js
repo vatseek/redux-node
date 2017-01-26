@@ -1,7 +1,4 @@
-import counterReducer from './counterReducer';
-import timeReducer from './timeReducer';
+import userReducer from './userReducer';
 
 
-export const counter = counterReducer;
-
-export const time = timeReducer;
+export const user = userReducer;

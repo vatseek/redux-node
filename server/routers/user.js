@@ -14,7 +14,7 @@ router.post('/register', require('../forms/registerUserForm'), function (req, re
     }
 
     if (!req.form.isValid) {
-        return next(new ValidationError(400, 'Already signed in'), { form: req.form })
+        return next(new ValidationError(406, 'Invalid data'), { form: req.form })
     }
 
     User.getUserByEmailOrLogin(req.form.email, req.form.login).then(user => {
@@ -23,7 +23,7 @@ router.post('/register', require('../forms/registerUserForm'), function (req, re
         }
         User.addUser(req.form).then(user => {
             req.session.user = user;
-            return res.return({user: user });
+            return res.send({user: user });
         }).catch(err => next(err));
     }).catch(err => next(err));
 });
