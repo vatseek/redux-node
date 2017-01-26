@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import { hashHistory } from 'react-router';
 export const ACTION_USER_LOGIN = 'ACTION_USER_LOGIN';
 export const ACTION_USER_LOGOUT = 'ACTION_USER_LOGOUT';
 export const ACTION_USER_REGISTER = 'ACTION_USER_REGISTER';
@@ -8,7 +9,6 @@ export const ACTION_USER_ERROR = 'ACTION_USER_LOAD';
 function loadUser(user) {
     return { type: ACTION_USER_LOAD, user };
 }
-
 
 export function actionError(err) {
     return { type: ACTION_USER_ERROR, err };
@@ -24,7 +24,12 @@ export function loginUser(data) {
                 success: result => resolve(result),
                 error: err => reject(err)
             });
-        }).then((result) => dispatch(loadUser(result))).catch(err => dispatch(actionError(err)));
+        }).then((result) => {
+            dispatch(loadUser(result.user));
+            hashHistory.push('/dashboard');
+        }).catch(err => {
+            dispatch(actionError(err));
+        });
     };
 }
 
@@ -38,7 +43,10 @@ export function registerUser(data) {
                 success: result => resolve(result),
                 error: err => reject(err)
             });
-        }).then((result) => dispatch(loadUser(result))).catch(err => dispatch(actionError(err)));
+        }).then((result) => {
+            dispatch(loadUser(result));
+            hashHistory.push('/dashboard');
+        }).catch(err => dispatch(actionError(err)));
     };
 }
 
@@ -51,6 +59,9 @@ export function logoutUser() {
                 success: result => resolve(result),
                 error: err => reject(err)
             });
-        }).then((result) => dispatch(loadUser(null))).catch(err => dispatch(actionError(err)));
+        }).then(() => {
+            dispatch(loadUser(null));
+            hashHistory.push('/login');
+        }).catch(err => dispatch(actionError(err)));
     };
 }

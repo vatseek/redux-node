@@ -6,7 +6,6 @@ import * as _ from 'underscore';
 
 class Navigation extends Component {
     render() {
-        console.log(this.props);
         return (
             <nav className="navbar navbar-default navbar-fixed-top navbar-inverse">
                 <div className="">
