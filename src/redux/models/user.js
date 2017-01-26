@@ -1,5 +1,5 @@
-export function isUserSignedIn(/*state*/) {
-    return false;
-    // TODO: check for sign
-    // return state.auth.getIn(['user', 'isSignedIn']);
+import * as _ from 'underscore';
+
+export function isUserSignedIn(state) {
+    return !_.isEmpty(state.user);
 }
