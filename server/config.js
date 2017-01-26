@@ -29,6 +29,10 @@ const configDev = {
     }
 };
 
+if (process.env.NODE_ENV === 'production') {
+    configDev.mongoose.uri = "mongodb://testuser:testuser@ds131139.mlab.com:31139/heroku_3l24sqpc";
+}
+
 nconf.argv().env();
 if (ENV == 'development') {
     nconf.defaults(configDev);
