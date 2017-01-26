@@ -4,7 +4,7 @@ const ENV = process.env.NODE_ENV;
 const configDev = {
     "port": 5000,
     "mongoose": {
-        "uri": "mongodb://localhost/comedy",
+        "uri": "mongodb://localhost/testing",
         "options": {
             "server": {
                 "socketOptions": {
@@ -12,7 +12,7 @@ const configDev = {
                 }
             }
         },
-        "db": "comedy"
+        "db": "testing"
     },
     "session": {
         "keys": {

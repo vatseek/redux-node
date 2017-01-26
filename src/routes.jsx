@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, IndexRedirect} from 'react-router';
 import App, {Dashboard, Login, Register} from 'components/App';
 import {isUserSignedIn} from 'redux/models/user';
-import ReduxCounter from 'components/CounterPage/ReduxCounter';
+
 
 function requireAuth(nextState, transition, cb) {
     setTimeout(() => {

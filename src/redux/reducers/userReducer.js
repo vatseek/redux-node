@@ -6,12 +6,12 @@ export default function (state = {}, action) {
     } else if (action.type === ACTION_USER_LOGOUT) {
         return state;
     } else if (action.type === ACTION_USER_REGISTER) {
-        return {...action.data};
+        return { ...action.data };
     } else if (action.type === ACTION_USER_LOAD) {
         if (!action.user) {
-            return { }
+            return { };
         }
-        return {...action.user};
+        return { ...action.user };
     } else {
         return state;
     }
