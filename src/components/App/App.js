@@ -43,6 +43,15 @@ class App extends Component {
                         <div className="col-lg-12">
                         </div>
                     </div>
+                    {!_.isEmpty(this.props.error) && (
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="alert alert-danger">
+                                    {this.props.error}
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     {this.props.children}
                 </div>
             </div>
@@ -51,8 +60,8 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const { user } = state;
-    return { user };
+    const { user, error } = state;
+    return { user, error };
 }
 
 export default connect(mapStateToProps)(App);
