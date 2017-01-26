@@ -8,6 +8,9 @@ export default function (state = {}, action) {
     } else if (action.type === ACTION_USER_REGISTER) {
         return {...action.data};
     } else if (action.type === ACTION_USER_LOAD) {
+        if (!action.user) {
+            return { }
+        }
         return {...action.user};
     } else {
         return state;

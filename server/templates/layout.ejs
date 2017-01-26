@@ -9,7 +9,7 @@
 <script type="text/javascript">
     window.REDUX_INITIAL_STATE = { user: null }
     <% if (user) { %>
-        window.REDUX_INITIAL_STATE.user = user.toString();
+        window.REDUX_INITIAL_STATE.user = <%- user.toString() %>;
     <% } %>
 </script>
 <%- body -%>

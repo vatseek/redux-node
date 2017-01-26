@@ -21,7 +21,7 @@ export default function routes(storeRef) {
     return (
         <Route component={App} path='/'>
             <Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
-            <Route path="/login" component={ReduxCounter} />
+            <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <IndexRedirect to="dashboard" />
         </Route>

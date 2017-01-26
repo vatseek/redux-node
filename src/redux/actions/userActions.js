@@ -34,6 +34,28 @@ export function registerUser(data) {
     };
 }
 
+function actionError() {
+    return { type: ACTION_USER_LOGIN };
+}
+
 export function logoutUser() {
+    return (dispatch, getState) => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: "POST",
+                url: '/logout',
+                success: result => {
+                    resolve(result);
+                },
+                error: err => {
+                    reject(err);
+                }
+            });
+        }).then((result) => {
+            dispatch(loadUser(null))
+        }).catch(err => {
+            dispatch
+        })
+    };
     return { type: ACTION_USER_LOGOUT };
 }

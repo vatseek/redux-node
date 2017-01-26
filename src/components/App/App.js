@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../redux/actions/userActions';
+import * as _ from 'underscore';
 
 class Navigation extends Component {
     render() {
+        console.log(this.props);
         return (
             <nav className="navbar navbar-default navbar-fixed-top navbar-inverse">
                 <div className="">
@@ -10,10 +14,12 @@ class Navigation extends Component {
                         <a className="navbar-brand" href="/">TTTest</a>
                     </div>
                     <div className="navbar-collapse collapse">
-                        {this.props.user ? (
+                        {!_.isEmpty(this.props.user) ? (
                             <ul className="nav navbar-nav navbar-right">
                                 <li><Link to="/dashboard" activeClassName="active">Dashboard</Link></li>
-                                <li><Link to="/logout" activeClassName="active">Logout</Link></li>
+                                <li>
+                                    <a onClick={e => { e.preventDefault(); this.props.dispatch(logoutUser()); }}>Logout</a>
+                                </li>
                             </ul>
                         ) : (
                             <ul className="nav navbar-nav navbar-right">
@@ -32,19 +38,12 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navigation user={false} />
+                <Navigation user={this.props.user} dispatch={this.props.dispatch} />
                 <div className="container-fluid">
                     <div className="row" style={{height: "80px"}}>
                         <div className="col-lg-12">
                         </div>
                     </div>
-                    {/*<div className="row">*/}
-                        {/*<div className="col-lg-12">*/}
-                            {/*<div className="alert alert-danger">*/}
-                                {/*test*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
                     {this.props.children}
                 </div>
             </div>
@@ -52,4 +51,9 @@ class App extends Component {
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    const { user } = state;
+    return { user };
+}
+
+export default connect(mapStateToProps)(App);
