@@ -7,7 +7,7 @@ class Form extends Component {
             <form {...this.props}>
                 {this.props.children}
             </form>
-        )
+        );
     }
 }
 
@@ -26,7 +26,10 @@ class FromInput extends Component {
         return (
             <div className="form-group">
                 <label htmlFor={this.props.name}>{this.props.label}</label>
-                <input type="text" name={this.props.name} className="form-control" placeholder={this.props.label} value={this.props.value}/>
+                <input onChange={this.props.onChange} type={this.props.type} name={this.props.name} className="form-control" placeholder={this.props.label} value={this.props.value}/>
+                {this.props.error && (
+                    <p className="error">{this.props.error}</p>
+                )}
             </div>
         );
     }

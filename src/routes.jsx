@@ -1,9 +1,6 @@
 import React from 'react';
 import {Route, IndexRedirect} from 'react-router';
-import App, {Dashboard, Login, Register, Logout} from 'components/App';
-// import CounterPage from 'components/CounterPage';
-// import HelloWorldPage from 'components/HelloWorldPage';
-// import TimePage from 'components/TimePage';
+import App, {Dashboard, Login, Register} from 'components/App';
 import {isUserSignedIn} from 'redux/models/user';
 
 function requireAuth(nextState, transition, cb) {
