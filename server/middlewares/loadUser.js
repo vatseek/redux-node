@@ -4,7 +4,7 @@ module.exports = function(req, res, next) {
     if (process.env.NODE_ENV !== 'production') {
         res.locals.assetsDomain = 'http://localhost:8050';
     } else {
-        res.locals.assetsDomain = '/';
+        res.locals.assetsDomain = '.';
     }
 
     req.user = res.locals.user = null;
