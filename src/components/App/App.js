@@ -43,6 +43,9 @@ class App extends Component {
                         <div className="col-lg-12">
                         </div>
                     </div>
+                    {!_.isEmpty(this.props.user) && (
+                        <div>Hello {this.props.user.login}!</div>
+                    )}
                     {!_.isEmpty(this.props.error) && (
                         <div className="row">
                             <div className="col-lg-12">
